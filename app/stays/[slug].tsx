@@ -1,9 +1,16 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import stays from "@/data/stays";
+import { useLocalSearchParams, useRouter } from "expo-router";
 
 const StayDetails = () => {
-  const stay = stays[0];
+  const { slug } = useLocalSearchParams();
+  const router = useRouter();
+  const stay = stays[0] && stays.find((s) => s.slug == slug);
+  if (!stay) {
+    router.replace("/stays");
+    return null;
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.name}>{stay?.name}</Text>

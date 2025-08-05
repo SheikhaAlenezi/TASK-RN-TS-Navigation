@@ -6,6 +6,7 @@ import StayCard from "./StayCard";
 interface Stay {
   id: number;
   name: string;
+  slug: string;
   img: string;
   rating: number;
   price: number;
